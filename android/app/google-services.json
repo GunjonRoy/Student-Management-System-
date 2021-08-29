@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1024267767353",
+    "project_id": "student-management-syste-c5482",
+    "storage_bucket": "student-management-syste-c5482.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024267767353:android:c466bfd8a99f1323cb47e8",
+        "android_client_info": {
+          "package_name": "com.gunjon.studentmanagementsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024267767353-igshvnnj4b2e7ctoi58lfi2aodp83jlb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnRLIicIFhmGSnvawswGwgJhqj2urnCXE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024267767353-igshvnnj4b2e7ctoi58lfi2aodp83jlb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
