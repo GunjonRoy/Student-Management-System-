@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import '../actorBool/whoUser.dart';
+import 'package:localstore/localstore.dart';
+import 'log_in_page.dart';
+
+import 'student/studentProfile_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -6,6 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool who =true;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,7 +56,10 @@ class _HomePageState extends State<HomePage> {
                           //color: Colors.white30,
                           child: TextButton(
                               onPressed: (){
-                                Navigator.pushNamed(context, '/log');
+                                who=true;
+                                print(who);
+                                //Who(who);
+                                Navigator.push(context,MaterialPageRoute(builder: (context)=>LogInPage(who)));
                               },
                               child: Text("Teacher",
                                 style: TextStyle(
@@ -80,7 +89,10 @@ class _HomePageState extends State<HomePage> {
                       //color: Colors.white30,
                         child: TextButton(
                             onPressed: (){
-                              Navigator.pushNamed(context, '/log');
+                              who=false;
+                              print(who);
+                              //HomePage().setWho(who);
+                              Navigator.push(context,MaterialPageRoute(builder: (context)=>LogInPage(who)));
                             },
                             child: Text("Student",
                               style: TextStyle(

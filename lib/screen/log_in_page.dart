@@ -1,17 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:studentmanagementsystem/screen/student/student_page.dart';
+import '../authService/AuthService.dart';
+import 'registration_page.dart';
 
 class LogInPage extends StatefulWidget {
+  late final bool who;
+  LogInPage(bool who){
+    this.who=who;
+  }
   @override
-  _LogInPageState createState() => _LogInPageState();
+  _LogInPageState createState() => _LogInPageState(who);
 }
 
 class _LogInPageState extends State<LogInPage> {
+  late final bool who;
+  _LogInPageState(bool who){
+    this.who=who;
+  }
+  final auth=FirebaseAuth.instance;
+
+  var email;
+
+  var password;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Center(child: Text("Log In")),
+          title: Padding(
+            padding: const EdgeInsets.only(left: 80),
+            child: Text("Log In"),
+          ),
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -45,6 +66,9 @@ class _LogInPageState extends State<LogInPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 20,left: 20),
                         child: TextField(
+                          onChanged: (value){
+                            email=value;
+                          },
                           decoration:InputDecoration(
                             prefixIcon: Icon(Icons.mail_outline),
                             hintText: "Email"
@@ -72,6 +96,9 @@ class _LogInPageState extends State<LogInPage> {
                             hintText: "password",
                             suffixIcon: Icon(Icons.visibility_off)
                           ),
+                          onChanged: (value){
+                            password=value;
+                          },
                         ),
                       )
                     ),
@@ -79,14 +106,35 @@ class _LogInPageState extends State<LogInPage> {
                   SizedBox(height: 20,),
                   ElevatedButton(
                       onPressed: (){
-                        Navigator.pushNamed(context, '/admin');
+                        setState(() async{
+                          try{
+                           await AuthService().signInWithEmailAndPassword(email, password).then((value) => print("Signed in"));
+//                            await auth.signInWithEmailAndPassword(email: email, password: password);
+
+                            if(who==true){
+                              Navigator.pushNamed(context, '/admin');
+                            }else if(who==false){
+                              //Navigator.pushNamed(context, '/student');
+                              //Navigator.push(context, MaterialPageRoute(builder: (context)=>Student_page("p")));
+                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>Student_page("p")), (route) => false);
+                            }
+                            else{
+                              Navigator.pushNamed(context, '/admin');
+                            }
+                            //Navigator.pushNamed(context, '/admin');
+                          }catch(e){
+                            print(e);
+                          }
+                        });
+
                       },
                       child: Text("Log In")
                   ),
                   SizedBox(height: 20,),
                   TextButton(
                       onPressed: (){
-                        Navigator.pushNamed(context, '/reg');
+                        print(who);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>RegistrationPage(who)));
                       },
                       child: Text("Or Registration",
                         style: TextStyle(

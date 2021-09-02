@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:studentmanagementsystem/admin_page.dart';
-import 'package:studentmanagementsystem/home_page.dart';
-import 'package:studentmanagementsystem/log_in_page.dart';
-import 'package:studentmanagementsystem/registration_page.dart';
-import 'package:studentmanagementsystem/student_page.dart';
-import 'package:studentmanagementsystem/teacher_page.dart';
+import 'screen/admin/admin_page.dart';
+import 'screen/home_page.dart';
+import 'screen/log_in_page.dart';
+import 'screen/registration_page.dart';
+import 'screen/student/student_page.dart';
+import 'screen/teacher/teacher_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -31,11 +34,11 @@ class MyApp extends StatelessWidget {
       ),
       home: HomePage(),
       routes: {
-        '/reg':(_)=>RegistrationPage(),
-        '/log':(_)=>LogInPage(),
+        //'/reg':(_)=>RegistrationPage(),
+        //'/log':(_)=>LogInPage(),
         '/home':(_)=>HomePage(),
         '/techer':(_)=>TeacherPage(),
-        '/student':(_)=>Student_page(),
+        //'/student':(_)=>Student_page(),
         //'/admin':(_)=>AdminPage(),
         '/admin':(_)=>AdminPage(),
       },
