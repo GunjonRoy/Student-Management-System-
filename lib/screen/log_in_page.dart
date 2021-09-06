@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:studentmanagementsystem/screen/admin/admin_page.dart';
 import 'package:studentmanagementsystem/screen/student/student_page.dart';
 import '../authService/AuthService.dart';
 import 'registration_page.dart';
@@ -105,21 +106,27 @@ class _LogInPageState extends State<LogInPage> {
                   ),
                   SizedBox(height: 20,),
                   ElevatedButton(
-                      onPressed: (){
+                      onPressed: ()async{
                         setState(() async{
                           try{
-                           await AuthService().signInWithEmailAndPassword(email, password).then((value) => print("Signed in"));
+                            if(email!="admin@a.com"){
+                              await AuthService().signInWithEmailAndPassword(email, password).then((value) => print("Signed in"));
 //                            await auth.signInWithEmailAndPassword(email: email, password: password);
 
-                            if(who==true){
-                              Navigator.pushNamed(context, '/admin');
-                            }else if(who==false){
-                              //Navigator.pushNamed(context, '/student');
-                              //Navigator.push(context, MaterialPageRoute(builder: (context)=>Student_page("p")));
-                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>Student_page("p")), (route) => false);
+                              if(who==true){
+                                Navigator.pushNamed(context, '/techer');
+                              }else if(who==false){
+                                //Navigator.pushNamed(context, '/student');
+                                //Navigator.push(context, MaterialPageRoute(builder: (context)=>Student_page("p")));
+                                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>Student_page("p")), (route) => false);
+                              }
+                              else{
+                                Navigator.pushNamed(context, '/admin');
+                              }
                             }
                             else{
-                              Navigator.pushNamed(context, '/admin');
+                              await AuthService().signInWithEmailAndPassword(email, password).then((value) => print("Signed in"));
+                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>AdminPage()), (route) => false);
                             }
                             //Navigator.pushNamed(context, '/admin');
                           }catch(e){

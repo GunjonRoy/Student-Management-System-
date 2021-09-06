@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         //'/reg':(_)=>RegistrationPage(),
         //'/log':(_)=>LogInPage(),
         '/home':(_)=>HomePage(),
-        '/techer':(_)=>TeacherPage(),
+        '/techer':(_)=>TeacherPage("p"),
         //'/student':(_)=>Student_page(),
         //'/admin':(_)=>AdminPage(),
         '/admin':(_)=>AdminPage(),

@@ -16,6 +16,7 @@ class AuthService {
     if (credential.user != null) {
       if(who==false){
         _firebaseAuth.currentUser!.updateDisplayName(userName.toString());
+       // _firebaseAuth.currentUser!.updatePhoneNumber(int.parse(phoneNo));
         await _firestore
             .collection('student user')
             .doc(_firebaseAuth.currentUser!.uid)

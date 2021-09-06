@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '../authService/AuthService.dart';
@@ -111,6 +112,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20,right: 20),
                         child: TextField(
+                          //textInputAction: TextInputType.phone,
+                          keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                               prefixIcon: Icon(Icons.account_circle),
                               hintText: "Phone No"
